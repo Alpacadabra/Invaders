@@ -306,6 +306,8 @@ public final class DrawManager {
 		String playString = "Play";
 		String highScoresString = "High scores";
 		String exitString = "exit";
+		String player = "select player";
+		String difficulty = "difficulty";
 
 		if (option == 2)
 			backBufferGraphics.setColor(Color.GREEN);
@@ -324,7 +326,20 @@ public final class DrawManager {
 		else
 			backBufferGraphics.setColor(Color.WHITE);
 		drawCenteredRegularString(screen, exitString, screen.getHeight() / 3
-				* 2 + fontRegularMetrics.getHeight() * 4);
+				* 2 + fontRegularMetrics.getHeight() * 6);
+		if (option == 4)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, player, screen.getHeight() / 3
+				* 2 + fontRegularMetrics.getHeight()*3);	
+	
+		if (option == 5)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, difficulty, screen.getHeight()
+				/ 3 * 2 + fontRegularMetrics.getHeight()*4);
 	}
 
 	/**
@@ -454,7 +469,8 @@ public final class DrawManager {
 	 */
 	public void drawHighScoreMenu(final Screen screen) {
 		String highScoreString = "High Scores";
-		String instructionsString = "Press Space to return";
+		String instructionsString = "Press Space to return / R to reset";
+		
 
 		backBufferGraphics.setColor(Color.GREEN);
 		drawCenteredBigString(screen, highScoreString, screen.getHeight() / 8);

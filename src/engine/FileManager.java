@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -267,5 +268,30 @@ public final class FileManager {
 			if (bufferedWriter != null)
 				bufferedWriter.close();
 		}
+	}
+
+	public void resetHightScores() {
+		FileWriter fileWriter = null;
+
+		try {
+			String jarPath = FileManager.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+			jarPath = URLDecoder.decode(jarPath, "UTF-8");
+
+			String scoresPath = new File(jarPath).getParent();
+			scoresPath += File.separator;
+			scoresPath += "scores";
+
+			File scoresFile = new File(scoresPath);
+
+			fileWriter = new FileWriter(scoresFile);
+			fileWriter.write("");
+
+			logger.info("Deleting user high scores.");
+
+			fileWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
