@@ -21,12 +21,9 @@ public class HighScoreScreen extends Screen {
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 * 
-	 * @param width
-	 *            Screen width.
-	 * @param height
-	 *            Screen height.
-	 * @param fps
-	 *            Frames per second, frame rate at which the game is run.
+	 * @param width  Screen width.
+	 * @param height Screen height.
+	 * @param fps    Frames per second, frame rate at which the game is run.
 	 */
 	public HighScoreScreen(final int width, final int height, final int fps) {
 		super(width, height, fps);
@@ -58,9 +55,13 @@ public class HighScoreScreen extends Screen {
 		super.update();
 
 		draw();
-		if (inputManager.isKeyDown(KeyEvent.VK_SPACE)
-				&& this.inputDelay.checkFinished())
+		if (inputManager.isKeyDown(KeyEvent.VK_SPACE) && this.inputDelay.checkFinished())
 			this.isRunning = false;
+
+		if (inputManager.isKeyDown(KeyEvent.VK_R)) {
+			Core.getFileManager().resetHightScores();
+			this.isRunning = false;
+		}
 	}
 
 	/**
