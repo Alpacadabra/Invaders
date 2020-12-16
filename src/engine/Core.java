@@ -57,58 +57,58 @@ public final class Core {
 			new GameSettings(7, 7, 10, 1000);
 	/** Difficulty settings for level 7. */
 	private static final GameSettings SETTINGS_LEVEL_7 =
-			new GameSettings(8, 7, 2, 500);
+			new GameSettings(8, 7, 5, 500);
 	/** Difficulty settings for level 7. */
 	private static final GameSettings SETTINGS_LEVEL_8 =
 			new GameSettings(8, 7, 2, 500);
 	//normal
 	private static final GameSettings SETTINGS_LEVEL_1n =
-			new GameSettings(5, 4, 60, 2000);
+			new GameSettings(6, 4, 30, 3000);
 	/** Difficulty settings for level 2. */
 	private static final GameSettings SETTINGS_LEVEL_2n =
-			new GameSettings(5, 5, 50, 2500);
+			new GameSettings(6, 5, 25, 3500);
 	/** Difficulty settings for level 3. */
 	private static final GameSettings SETTINGS_LEVEL_3n =
-			new GameSettings(6, 5, 40, 1500);
+			new GameSettings(6, 5, 20, 4000);
 	/** Difficulty settings for level 4. */
 	private static final GameSettings SETTINGS_LEVEL_4n =
-			new GameSettings(6, 6, 30, 1500);
+			new GameSettings(7, 6, 15, 4500);
 	/** Difficulty settings for level 5. */
 	private static final GameSettings SETTINGS_LEVEL_5n =
-			new GameSettings(7, 6, 20, 1000);
+			new GameSettings(7, 6, 5, 5000);
 	/** Difficulty settings for level 6. */
 	private static final GameSettings SETTINGS_LEVEL_6n =
-			new GameSettings(7, 7, 10, 1000);
+			new GameSettings(7, 7, 2, 5500);
 	/** Difficulty settings for level 7. */
 	private static final GameSettings SETTINGS_LEVEL_7n =
-			new GameSettings(8, 7, 0, 500);
+			new GameSettings(9, 7, 1, 6000);
 	/** Difficulty settings for level 7. */
 	private static final GameSettings SETTINGS_LEVEL_8n =
-			new GameSettings(8, 7, 100, 500);
+			new GameSettings(9, 7, 100, 6500);
 	//Hard
 	private static final GameSettings SETTINGS_LEVEL_1h =
-			new GameSettings(6,6,1,10000);
+			new GameSettings(7,6,20,100);
 	/** Difficulty settings for level 2. */
 	private static final GameSettings SETTINGS_LEVEL_2h =
-			new GameSettings(5, 5, 50, 2500);
+			new GameSettings(7, 5,16, 200);
 	/** Difficulty settings for level 3. */
 	private static final GameSettings SETTINGS_LEVEL_3h =
-			new GameSettings(6, 5, 40, 1500);
+			new GameSettings(7, 5, 12, 1500);
 	/** Difficulty settings for level 4. */
 	private static final GameSettings SETTINGS_LEVEL_4h =
-			new GameSettings(6, 6, 30, 1500);
+			new GameSettings(8, 6, 8, 1500);
 	/** Difficulty settings for level 5. */
 	private static final GameSettings SETTINGS_LEVEL_5h =
-			new GameSettings(7, 6, 20, 1000);
+			new GameSettings(8, 6, 4, 1000);
 	/** Difficulty settings for level 6. */
 	private static final GameSettings SETTINGS_LEVEL_6h =
-			new GameSettings(7, 7, 10, 1000);
+			new GameSettings(8, 7, 2, 1000);
 	/** Difficulty settings for level 7. */
 	private static final GameSettings SETTINGS_LEVEL_7h =
-			new GameSettings(8, 7, 8, 500);
+			new GameSettings(9, 7, 1, 500);
 	/** Difficulty settings for level 7. */
 	private static final GameSettings SETTINGS_LEVEL_8h =
-			new GameSettings(10,10,100,10000);
+			new GameSettings(9,10,1,1000);
 	
 	/** Frame to draw the screen on. */
 	private static Frame frame;
@@ -177,6 +177,7 @@ public final class Core {
 		gameSettings_Normal.add(SETTINGS_LEVEL_5n);
 		gameSettings_Normal.add(SETTINGS_LEVEL_6n);
 		gameSettings_Normal.add(SETTINGS_LEVEL_7n);
+		gameSettings_Normal.add(SETTINGS_LEVEL_8n);
 		gameSettings_Hard = new ArrayList<GameSettings>();
 		gameSettings_Hard.add(SETTINGS_LEVEL_1h);
 		gameSettings_Hard.add(SETTINGS_LEVEL_2h);
@@ -185,7 +186,7 @@ public final class Core {
 		gameSettings_Hard.add(SETTINGS_LEVEL_5h);
 		gameSettings_Hard.add(SETTINGS_LEVEL_6h);
 		gameSettings_Hard.add(SETTINGS_LEVEL_7h);
-		
+		gameSettings_Hard.add(SETTINGS_LEVEL_8h);
 		GameState gameState;
 
 		int returnCode = 1;
