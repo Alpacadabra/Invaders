@@ -56,6 +56,7 @@ public class Entity {
 	public final Color getColor() {
 		return color;
 	}
+	
 
 	/**
 	 * Getter for the X axis position of the entity.

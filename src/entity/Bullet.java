@@ -11,7 +11,7 @@ import engine.DrawManager.SpriteType;
  * 
  */
 public class Bullet extends Entity {
-
+	private Color color;
 	/**
 	 * Speed of the bullet, positive or negative depending on direction -
 	 * positive is down.
@@ -30,20 +30,29 @@ public class Bullet extends Entity {
 	 *            direction - positive is down.
 	 */
 	public Bullet(final int positionX, final int positionY, final int speed) {
-		super(positionX, positionY, 3 * 2, 5 * 2, Color.WHITE);
+		super(positionX, positionY, 3 * 2, 5 * 2, Color.blue);
 
 		this.speed = speed;
 		setSprite();
 	}
-
+	/**
+	*  set color of entity
+	*/
+	public final void setColor(Color new_color) {
+		this.color = new_color;
+	}
 	/**
 	 * Sets correct sprite for the bullet, based on speed.
 	 */
+	
 	public final void setSprite() {
 		if (speed < 0)
 			this.spriteType = SpriteType.Bullet;
-		else
+		else {
 			this.spriteType = SpriteType.EnemyBullet;
+			this.setColor(Color.red);
+		
+		}
 	}
 
 	/**

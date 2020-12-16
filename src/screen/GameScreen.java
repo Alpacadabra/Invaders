@@ -144,6 +144,7 @@ public class GameScreen extends Screen {
 	/**
 	 * Updates the elements on screen and checks for events.
 	 */
+	
 	private boolean esc [] = {false,false};
 	private int i=0;
 	private boolean esc_decision = true;
