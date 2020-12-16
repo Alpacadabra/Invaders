@@ -255,7 +255,7 @@ public final class DrawManager {
 		backBufferGraphics.setFont(fontRegular);
 		backBufferGraphics.setColor(Color.WHITE);
 		backBufferGraphics.drawString(Integer.toString(lives), 20, 25);
-		Ship dummyShip = new Ship(0, 0);
+		Ship dummyShip = new Ship(0, 0, Color.RED);
 		for (int i = 0; i < lives; i++)
 			drawEntity(dummyShip, 40 + 35 * i, 10);
 	}
@@ -293,7 +293,49 @@ public final class DrawManager {
 		backBufferGraphics.setColor(Color.GREEN);
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
 	}
+	
+	public void drawD(final Screen screen) {
+		String titleString = "Difficulty";
+		String instructionsString =
+				"select with w+s / arrows, confirm,exit with space";
+		
 
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, instructionsString,
+				screen.getHeight() / 2);
+
+		backBufferGraphics.setColor(Color.GREEN);
+		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+	}
+
+	public void drawDifficulty(final Screen screen, final int option) {
+		
+		String EASY = "EASY";
+		String NORMAL = "NORMAL";
+		String HARD = "HARD";
+		
+		if (option == 0)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, EASY,
+				screen.getHeight() / 3 * 2);
+		
+		if (option == 1)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen,NORMAL, screen.getHeight()
+				/ 3 * 2 + fontRegularMetrics.getHeight() * 2);
+		
+		if (option == 2)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, HARD, screen.getHeight() / 3
+				* 2 + fontRegularMetrics.getHeight() * 4);
+		
+	}
 	/**
 	 * Draws main menu.
 	 * 
@@ -303,10 +345,10 @@ public final class DrawManager {
 	 *            Option selected.
 	 */
 	public void drawMenu(final Screen screen, final int option) {
-		String playString = "Play";
+		String playString = "1P Play";
+		String playString2 = "2P Play";
 		String highScoresString = "High scores";
 		String exitString = "exit";
-		String player = "select player";
 		String difficulty = "difficulty";
 
 		if (option == 2)
@@ -315,25 +357,25 @@ public final class DrawManager {
 			backBufferGraphics.setColor(Color.WHITE);
 		drawCenteredRegularString(screen, playString,
 				screen.getHeight() / 3 * 2);
+		
 		if (option == 3)
 			backBufferGraphics.setColor(Color.GREEN);
 		else
 			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, playString2,
+				screen.getHeight() / 3 * 2 + fontRegularMetrics.getHeight());
+		if (option == 4)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
 		drawCenteredRegularString(screen, highScoresString, screen.getHeight()
-				/ 3 * 2 + fontRegularMetrics.getHeight() * 2);
+				/ 3 * 2 + fontRegularMetrics.getHeight() * 3);
 		if (option == 0)
 			backBufferGraphics.setColor(Color.GREEN);
 		else
 			backBufferGraphics.setColor(Color.WHITE);
 		drawCenteredRegularString(screen, exitString, screen.getHeight() / 3
 				* 2 + fontRegularMetrics.getHeight() * 6);
-		if (option == 4)
-			backBufferGraphics.setColor(Color.GREEN);
-		else
-			backBufferGraphics.setColor(Color.WHITE);
-		drawCenteredRegularString(screen, player, screen.getHeight() / 3
-				* 2 + fontRegularMetrics.getHeight()*3);	
-	
 		if (option == 5)
 			backBufferGraphics.setColor(Color.GREEN);
 		else

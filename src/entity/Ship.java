@@ -35,8 +35,8 @@ public class Ship extends Entity {
 	 * @param positionY
 	 *            Initial position of the ship in the Y axis.
 	 */
-	public Ship(final int positionX, final int positionY) {
-		super(positionX, positionY, 13 * 2, 8 * 2, Color.GREEN);
+	public Ship(final int positionX, final int positionY, Color color) {
+		super(positionX, positionY, 13 * 2, 8 * 2, color);
 
 		this.spriteType = SpriteType.Ship;
 		this.shootingCooldown = Core.getCooldown(SHOOTING_INTERVAL);
@@ -44,7 +44,7 @@ public class Ship extends Entity {
 	}
 
 	/**
-	 * Moves the ship speed uni ts right, or until the right screen border is
+	 * Moves the ship speed units right, or until the right screen border is
 	 * reached.
 	 */
 	public final void moveRight() {
