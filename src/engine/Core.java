@@ -13,6 +13,7 @@ import screen.HighScoreScreen;
 import screen.ScoreScreen;
 import screen.Screen;
 import screen.TitleScreen;
+import screen.DifficultyScreen;
 
 /**
  * Implements core game logic.
@@ -57,6 +58,57 @@ public final class Core {
 	/** Difficulty settings for level 7. */
 	private static final GameSettings SETTINGS_LEVEL_7 =
 			new GameSettings(8, 7, 2, 500);
+	/** Difficulty settings for level 7. */
+	private static final GameSettings SETTINGS_LEVEL_8 =
+			new GameSettings(8, 7, 2, 500);
+	//normal
+	private static final GameSettings SETTINGS_LEVEL_1n =
+			new GameSettings(5, 4, 60, 2000);
+	/** Difficulty settings for level 2. */
+	private static final GameSettings SETTINGS_LEVEL_2n =
+			new GameSettings(5, 5, 50, 2500);
+	/** Difficulty settings for level 3. */
+	private static final GameSettings SETTINGS_LEVEL_3n =
+			new GameSettings(6, 5, 40, 1500);
+	/** Difficulty settings for level 4. */
+	private static final GameSettings SETTINGS_LEVEL_4n =
+			new GameSettings(6, 6, 30, 1500);
+	/** Difficulty settings for level 5. */
+	private static final GameSettings SETTINGS_LEVEL_5n =
+			new GameSettings(7, 6, 20, 1000);
+	/** Difficulty settings for level 6. */
+	private static final GameSettings SETTINGS_LEVEL_6n =
+			new GameSettings(7, 7, 10, 1000);
+	/** Difficulty settings for level 7. */
+	private static final GameSettings SETTINGS_LEVEL_7n =
+			new GameSettings(8, 7, 0, 500);
+	/** Difficulty settings for level 7. */
+	private static final GameSettings SETTINGS_LEVEL_8n =
+			new GameSettings(8, 7, 100, 500);
+	//Hard
+	private static final GameSettings SETTINGS_LEVEL_1h =
+			new GameSettings(6,6,1,10000);
+	/** Difficulty settings for level 2. */
+	private static final GameSettings SETTINGS_LEVEL_2h =
+			new GameSettings(5, 5, 50, 2500);
+	/** Difficulty settings for level 3. */
+	private static final GameSettings SETTINGS_LEVEL_3h =
+			new GameSettings(6, 5, 40, 1500);
+	/** Difficulty settings for level 4. */
+	private static final GameSettings SETTINGS_LEVEL_4h =
+			new GameSettings(6, 6, 30, 1500);
+	/** Difficulty settings for level 5. */
+	private static final GameSettings SETTINGS_LEVEL_5h =
+			new GameSettings(7, 6, 20, 1000);
+	/** Difficulty settings for level 6. */
+	private static final GameSettings SETTINGS_LEVEL_6h =
+			new GameSettings(7, 7, 10, 1000);
+	/** Difficulty settings for level 7. */
+	private static final GameSettings SETTINGS_LEVEL_7h =
+			new GameSettings(8, 7, 8, 500);
+	/** Difficulty settings for level 7. */
+	private static final GameSettings SETTINGS_LEVEL_8h =
+			new GameSettings(10,10,100,10000);
 	
 	/** Frame to draw the screen on. */
 	private static Frame frame;
@@ -64,6 +116,10 @@ public final class Core {
 	private static Screen currentScreen;
 	/** Difficulty settings list. */
 	private static List<GameSettings> gameSettings;
+	/** Difficulty settings list. */
+	private static List<GameSettings> gameSettings_Normal;
+	/** Difficulty settings list. */
+	private static List<GameSettings> gameSettings_Hard;
 	/** Application logger. */
 	private static final Logger LOGGER = Logger.getLogger(Core.class
 			.getSimpleName());
@@ -71,6 +127,8 @@ public final class Core {
 	private static Handler fileHandler;
 	/** Logger handler for printing to console. */
 	private static ConsoleHandler consoleHandler;
+	
+
 
 
 	/**
@@ -111,6 +169,22 @@ public final class Core {
 		gameSettings.add(SETTINGS_LEVEL_5);
 		gameSettings.add(SETTINGS_LEVEL_6);
 		gameSettings.add(SETTINGS_LEVEL_7);
+		gameSettings_Normal = new ArrayList<GameSettings>();
+		gameSettings_Normal.add(SETTINGS_LEVEL_1n);
+		gameSettings_Normal.add(SETTINGS_LEVEL_2n);
+		gameSettings_Normal.add(SETTINGS_LEVEL_3n);
+		gameSettings_Normal.add(SETTINGS_LEVEL_4n);
+		gameSettings_Normal.add(SETTINGS_LEVEL_5n);
+		gameSettings_Normal.add(SETTINGS_LEVEL_6n);
+		gameSettings_Normal.add(SETTINGS_LEVEL_7n);
+		gameSettings_Hard = new ArrayList<GameSettings>();
+		gameSettings_Hard.add(SETTINGS_LEVEL_1h);
+		gameSettings_Hard.add(SETTINGS_LEVEL_2h);
+		gameSettings_Hard.add(SETTINGS_LEVEL_3h);
+		gameSettings_Hard.add(SETTINGS_LEVEL_4h);
+		gameSettings_Hard.add(SETTINGS_LEVEL_5h);
+		gameSettings_Hard.add(SETTINGS_LEVEL_6h);
+		gameSettings_Hard.add(SETTINGS_LEVEL_7h);
 		
 		GameState gameState;
 
@@ -135,9 +209,11 @@ public final class Core {
 							% EXTRA_LIFE_FRECUENCY == 0
 							&& gameState.getLivesRemaining() < MAX_LIVES;
 					
+					
 					currentScreen = new GameScreen(gameState,
 							gameSettings.get(gameState.getLevel() - 1),
 							bonusLife, width, height, FPS);
+					
 					LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 							+ " game screen at " + FPS + " fps.");
 					frame.setScreen(currentScreen);
@@ -172,6 +248,24 @@ public final class Core {
 				returnCode = frame.setScreen(currentScreen);
 				LOGGER.info("Closing high score screen.");
 				break;
+			case 5:
+				currentScreen = new DifficultyScreen(width, height, FPS);
+				LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
+						+ " Difficulty screen at " + FPS + " fps.");
+				returnCode = frame.setScreen(currentScreen);
+				if(currentScreen.SelectDiff() == 2) {
+					gameSettings = gameSettings_Hard;
+					LOGGER.info("Difficulty");
+				}
+				if(currentScreen.SelectDiff() == 1) {
+					gameSettings = gameSettings_Normal;
+					LOGGER.info("Normal");
+				}
+				
+				LOGGER.info("Closing Difficulty screen.");
+				
+				
+				
 			default:
 				break;
 			}
