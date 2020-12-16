@@ -167,6 +167,7 @@ pip-log.txt
 #############
 
 log*
-*.ttf
 .checkstyle
 /target/
+/res/
+*.ucls
