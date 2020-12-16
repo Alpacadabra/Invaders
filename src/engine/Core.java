@@ -190,7 +190,6 @@ public final class Core {
 
 		int returnCode = 1;
 		do {
-			gameState = new GameState(1, 0, MAX_LIVES, 0, 0);
 
 			switch (returnCode) {
 			case 1:
@@ -202,7 +201,9 @@ public final class Core {
 				LOGGER.info("Closing title screen.");
 				break;
 			case 2:
+			case 3:
 				// Game & score.
+				gameState = new GameState(1, 0, MAX_LIVES, 0, 0, returnCode - 1);
 				do {
 					// One extra live every few levels.
 					boolean bonusLife = gameState.getLevel()
@@ -225,7 +226,8 @@ public final class Core {
 							gameState.getScore(),
 							gameState.getLivesRemaining(),
 							gameState.getBulletsShot(),
-							gameState.getShipsDestroyed());
+							gameState.getShipsDestroyed(),
+							gameState.getNumPlayer());
 
 				} while (gameState.getLivesRemaining() > 0
 						&& gameState.getLevel() <= NUM_LEVELS);
@@ -240,7 +242,7 @@ public final class Core {
 				returnCode = frame.setScreen(currentScreen);
 				LOGGER.info("Closing score screen.");
 				break;
-			case 3:
+			case 4:
 				// High scores.
 				currentScreen = new HighScoreScreen(width, height, FPS);
 				LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
