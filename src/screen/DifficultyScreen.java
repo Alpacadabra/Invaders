@@ -1,24 +1,22 @@
 package screen;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 import engine.Cooldown;
 import engine.Core;
+import engine.GameState;
+import engine.Score;
 
-/**
- * Implements the title screen.
- * 
- * @author <a href="mailto:RobertoIA1987@gmail.com">Roberto Izquierdo Amo</a>
- * 
- */
-public class TitleScreen extends Screen {
+public class DifficultyScreen extends Screen {
 
-	/** Milliseconds between changes in user selection. */
 	private static final int SELECTION_TIME = 200;
 	
 	/** Time between changes in user selection. */
 	private Cooldown selectionCooldown;
-
+	
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 * 
@@ -29,15 +27,16 @@ public class TitleScreen extends Screen {
 	 * @param fps
 	 *            Frames per second, frame rate at which the game is run.
 	 */
-	public TitleScreen(final int width, final int height, final int fps) {
+	public DifficultyScreen(final int width, final int height, final int fps) {
 		super(width, height, fps);
 
 		// Defaults to play.
-		this.returnCode = 2;
+		this.returnCode = 5;
 		this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
 		this.selectionCooldown.reset();
+		this.returnDiff = 0;
+		this.Diff = 0;
 	}
-
 	/**
 	 * Starts the action.
 	 * 
@@ -68,34 +67,40 @@ public class TitleScreen extends Screen {
 				nextMenuItem();
 				this.selectionCooldown.reset();
 			}
-			if (inputManager.isKeyDown(KeyEvent.VK_SPACE))
+			if (inputManager.isKeyDown(KeyEvent.VK_SPACE)
+					&& this.inputDelay.checkFinished()) {
 				this.isRunning = false;
+			}
 		}
+		
 	}
 
 	/**
 	 * Shifts the focus to the next menu item.
 	 */
 	private void nextMenuItem() {
-		if (this.returnCode == 5)
-			this.returnCode = 0;
-		else if (this.returnCode == 0)
-			this.returnCode = 2;
-		else
-			this.returnCode++;
+		
+		if (this.returnDiff == 2) 
+			this.returnDiff = 0;
+		else 
+			this.returnDiff++;
+		this.returnCode = 1;
 	}
-
-	/**
+	
+		/**
 	 * Shifts the focus to the previous menu item.
 	 */
+
 	private void previousMenuItem() {
-		if (this.returnCode == 0)
-			this.returnCode = 5;
-		else if (this.returnCode == 2)
-			this.returnCode = 0;
-		else
-			this.returnCode--;
+		
+		if (this.returnDiff == 0) 
+			this.returnDiff = 2;
+		else 
+			this.returnDiff--;
+		
+		this.returnCode = 1;
 	}
+	
 
 	/**
 	 * Draws the elements associated with the screen.
@@ -103,9 +108,25 @@ public class TitleScreen extends Screen {
 	private void draw() {
 		drawManager.initDrawing(this);
 
-		drawManager.drawTitle(this);
-		drawManager.drawMenu(this, this.returnCode);
+		drawManager.drawD(this);
+		drawManager.drawDifficulty(this, this.returnDiff);
 
 		drawManager.completeDrawing(this);
 	}
+	
+	@Override
+	public int SelectDiff()  {
+		
+		return this.returnDiff;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
