@@ -83,6 +83,7 @@ public class TitleScreen extends Screen {
 			this.returnCode = 2;
 		else
 			this.returnCode++;
+		
 	}
 
 	/**
