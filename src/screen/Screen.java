@@ -1,6 +1,7 @@
 package screen;
 
 import java.awt.Insets;
+import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -42,6 +43,11 @@ public class Screen {
 	protected boolean isRunning;
 	/** What kind of screen goes next. */
 	protected int returnCode;
+	/** What kind of screen goes next. */
+	protected int returnDiff;
+	
+	protected int Diff;
+	
 
 	/**
 	 * Constructor, establishes the properties of the screen.
@@ -78,12 +84,13 @@ public class Screen {
 	 * 
 	 * @return Next screen code.
 	 */
+	
+
 	public int run() {
 		this.isRunning = true;
-
 		while (this.isRunning) {
 			long time = System.currentTimeMillis();
-
+					
 			update();
 
 			time = (1000 / this.fps) - (System.currentTimeMillis() - time);
@@ -121,5 +128,10 @@ public class Screen {
 	 */
 	public final int getHeight() {
 		return this.height;
+	}
+
+
+	public int SelectDiff() {
+		return returnDiff;
 	}
 }
